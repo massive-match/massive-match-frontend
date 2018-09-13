@@ -1,0 +1,14 @@
+@import "./var";
+
+.el-radio.is-checked .el-radio__label {
+  color: $fb-green-1;
+}
+
+.el-radio.is-checked .el-radio__inner {
+  background-color: $fb-green-1;
+  border-color: $fb-green-1;
+}
+
+.el-radio:focus:not(.is-focus):not(:active) .el-radio__inner {
+  box-shadow: 0 0 2px 2px $fb-green-1;
+}

@@ -1,0 +1,64 @@
+@import "./var";
+
+.btn {
+  text-transform: uppercase;
+  color: $fb-black-1;
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background-color: $fb-green-1;
+  color: #FFFFFF;
+  border: 0;
+  outline: 0;
+}
+
+.btn.primary:hover {
+  background-color: $fb-green-2;
+  color: #FFFFFF;
+}
+
+.btn.secondary {
+  background-color: $fb-grey-2;
+  color: #FFFFFF;
+  border: 0;
+  outline: 0;
+}
+
+.btn.secondary:hover {
+  background-color: $fb-green-1;
+  color: #FFFFFF;
+}
+
+.btn.cancel {
+  background-color: $fb-red-1;
+  color: #FFFFFF;
+  border: 0;
+  outline: 0;
+}
+
+.btn.cancel:hover {
+  background-color: $fb-red-2;
+  color: #FFFFFF;
+}
+
+.btn.is-disabled, .btn.is-disabled:hover, .btn.is-disabled:focus{
+  background-color: #c0c4cc;
+  color: #FFFFFF;
+}
+
+.btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 50px;
+}
+.btn-main {
+  height: 45px;
+  width: 1fr;
+}
+i.el-icon-search:before {
+  font-weight: bolder;
+}

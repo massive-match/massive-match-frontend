@@ -1,0 +1,18 @@
+@import "node_modules/font-awesome/scss/font-awesome";
+@import "~element-ui/packages/theme-chalk/src/index";
+@import "./btn";
+@import "./input";
+@import "./text";
+@import "./pagination";
+@import "./checkbox";
+@import "./container";
+@import "./radio";
+@import "./form";
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.pull-right {
+  float: right;
+}

@@ -1,0 +1,20 @@
+@import "./var";
+
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: $fb-green-1;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: $fb-green-1;
+  border-color: $fb-green-1;
+}
+.el-checkbox__input.is-focus .el-checkbox__inner, .el-checkbox__inner:hover {
+  border-color: $fb-green-1;
+}
+.checkBoxIntermediary {
+  .el-checkbox__label {
+    float: left;
+    padding-right: 1em;
+    font-size: 12px;
+  }
+}

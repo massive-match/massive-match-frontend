@@ -1,0 +1,160 @@
+@import "./var";
+@import "./text";
+
+.el-input input {
+  border-radius: 0px;
+  color: $fb-grey-1;
+}
+.el-input-group__append {
+  background-color: #ffffff;
+  border: 0px;
+  color: $fb-green-1;
+  font-size: 1.5em;
+}
+.el-input-group__prepend {
+  background-color: $fb-green-1;
+  border: 0px;
+  color: #ffffff ;
+  font-size: 2em;
+}
+.mainInformationContainer {
+  .el-input {
+    font-family: $font;
+    width: 100px;
+  }
+  .el-input__inner {
+    height: 2em;
+    margin: 0;
+    padding: 0 0.5em;
+  }
+  .is-disabled {
+    .el-input__inner {
+      padding: 0;
+      cursor: auto;
+      color: #9B9B9B;
+      border: 0px;
+      background-color: #fff;
+    }
+  }
+  .el-textarea {
+    &.is-disabled {
+      .el-textarea__inner {
+        font-weight: 300;
+        cursor: auto;
+        padding: 0;
+        color: $fb-black-1;
+        border: 0;
+        background: #FFF;
+      }
+    }
+  }
+  .productIdentity {
+    .el-input {
+      &.is-disabled {
+        &.modelStyle {
+          .el-input__inner {
+            font-size: 12px;
+            color: $fb-green-1;
+            width: 70%;
+          }
+        }
+        .el-input__inner {
+          color: $fb-black-2;
+          font-family: $font;
+          font-weight: 700;
+          font-size: 18px;
+          height: 25px;
+        }
+      }
+      &.modelStyle {
+        .el-input__inner {
+          width: 70%;
+        }
+      }
+    }
+  }
+}
+.imageForm {
+  .el-dialog__body {
+    padding: 0 20px;
+  }
+  .el-dialog__header{
+    text-align: left;
+    font-weight: 700;
+  }
+  .el-form-item__label {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1em;
+  }
+  .el-input {
+    width: 80%;
+    vertical-align: -5px;
+  }
+}
+.priceContainer {
+  .el-input {
+    font-family: $font;
+  }
+  .el-input-number {
+    max-width: 160px;
+  }
+  .el-input__inner {
+    margin: 0;
+    padding: 0 0.5em;
+  }
+  .is-disabled {
+    width: 100px;
+    .el-input__inner {
+      padding: 0;
+      height: 18px;
+      font-weight: 700;
+      cursor: auto;
+      color: $fb-green-1;
+      border: 0px;
+      background-color: #fff;
+      font-size: 18px;
+      text-align: left;
+    }
+    .el-input-number__decrease {
+      display: none;
+    }
+    .el-input-number__increase {
+      display: none;
+    }
+  }
+}
+.requiredInfoContainer {
+  .el-select {
+    .is-disabled {
+      .el-input__inner {
+        height: 1em !important;
+        cursor: auto;
+      }
+      .el-input__suffix {
+        display: none;
+      }
+    }
+  }
+  .el-input {
+    font-family: $font;
+    width: 100px;
+  }
+  .el-input__inner {
+    height: 2em;
+    margin: 0;
+    padding: 0 0.5em;
+  }
+  .is-disabled {
+    .el-input__inner {
+      color: $fb-grey-2;
+      padding: 0;
+      height: 14px;
+      font-weight: 300;
+      cursor: auto;
+      border: 0px;
+      background-color: #fff;
+      font-size: 14px;
+    }
+  }
+}
