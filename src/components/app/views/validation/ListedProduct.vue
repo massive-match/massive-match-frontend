@@ -204,7 +204,15 @@ export default {
         params.sellers_id = productIdentity.productSeller.value;
         // EDITAR SETEO DE SELLER
       } else if (infoToEdit.type === 'required') {
-        // INTEGRAR
+        const requiredItems = this.productInfo.descriptions;
+        requiredItems[el.index] = {
+          attributes: this.productInfo.descriptions.attributes,
+          attributes_id: el.attributes_id,
+          description: el.value,
+          id: el.id,
+          products_id: el.products_id,
+        };
+        params.descriptions = requiredItems;
       } else {
         params[typeToChange] = el.value;
       }

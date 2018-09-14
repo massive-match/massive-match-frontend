@@ -57,7 +57,7 @@
           class="btn primary excelRequest">Descargar Todos</button>
         <button
         @click="allToSVL"
-        class="btn primary excelRequest">Descargar Seleccionados</button>
+        class="btn primary excelRequest">Enviar Seleccionados</button>
       </el-col>
     </el-row>
   </div>
@@ -111,7 +111,7 @@ export default {
             type: 'error',
           });
         });
-      })
+      });
     },
     handleSizeChange(val) {
       this.currentLimit = val;
