@@ -31,6 +31,7 @@
         <initialState
           v-if="initialState"/>
         <listedProduct
+          @addToSVL="addToSVL"
           @updateLoading="updateLoading"
           v-if="!initialState"
           v-for="(product, index) in totalProducts"
@@ -53,14 +54,17 @@
         </el-pagination>
         <button
           @click="handleExcelCreation"
-          class="btn primary excelRequest">Descargar</button>
+          class="btn primary excelRequest">Descargar Todos</button>
+        <button
+        @click="allToSVL"
+        class="btn primary excelRequest">Descargar Seleccionados</button>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import { getAll } from '@/endpoints';
+import { getAll, add } from '@/endpoints';
 import Selectors from './Selectors';
 import InitialState from './InitialState';
 import ListedProduct from './ListedProduct';
@@ -69,6 +73,7 @@ import ListedProduct from './ListedProduct';
 export default {
   data() {
     return {
+      toSVL: [],
       loadingState: false,
       initialState: true,
       totalProducts: [],
@@ -85,6 +90,29 @@ export default {
     initialState: InitialState,
   },
   methods: {
+    addToSVL(el) {
+      this.toSVL.push(el);
+    },
+    allToSVL() {
+      this.toSVL.forEach((el) => {
+        const requestUrl = {
+          path: `svl/${el.id}`,
+        };
+        add(requestUrl).then(() => {
+          this.$notify({
+            title: 'Completado',
+            message: 'Solicitud enviada',
+            type: 'success',
+          });
+        }).catch(() => {
+          this.$notify({
+            title: 'Error',
+            message: 'Error en la solicitud',
+            type: 'error',
+          });
+        });
+      })
+    },
     handleSizeChange(val) {
       this.currentLimit = val;
       this.handleLoadProducts();

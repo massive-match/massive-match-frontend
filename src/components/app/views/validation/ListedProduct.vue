@@ -28,7 +28,8 @@
             <button class="transparentBtn">IR AL LINK</button>
             <i class="fa fa-external-link" aria-hidden="true"></i>
           </a>
-          <!-- <el-checkbox></el-checkbox> -->
+          <el-checkbox
+          @change="toSvl"></el-checkbox>
         </div>
         <!-- Price Container -->
         <div
@@ -161,6 +162,10 @@ export default {
     },
   },
   methods: {
+    toSvl() {
+      this.$emit('addToSVL', this.productInfo);
+      // console.log(this.productInfo);
+    },
     loadInfo() {
       this.productData.additionalInfo.value = this.productInfo.description;
       if (this.productInfo.history_products !== null) {
