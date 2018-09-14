@@ -196,6 +196,7 @@ export default {
         params.name = productIdentity.productName.value;
         params.brand = productIdentity.productBrand.value;
         params.model = productIdentity.productModel.value;
+        params.sellers_id = productIdentity.productSeller.value;
         // EDITAR SETEO DE SELLER
       } else if (infoToEdit.type === 'required') {
         // INTEGRAR
@@ -247,7 +248,7 @@ export default {
         this.$notify({
           title: 'Completado',
           message: 'Solicitud enviada',
-          type: 'error',
+          type: 'success',
         });
       }).catch(() => {
         this.$notify({

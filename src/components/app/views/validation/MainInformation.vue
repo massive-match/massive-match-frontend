@@ -8,7 +8,7 @@
       <el-select
         class="sellerNameSelector"
         v-model="productData.productMainInformation.information.productSeller.label"
-        :disabled="true"
+        :disabled="productData.productMainInformation.disableState"
         @change="setSelectedValue"
         filterable>
         <el-option
@@ -152,7 +152,7 @@ export default {
         additionalInfo: {
           showButton: false,
           disableState: true,
-          value: '',
+          value: 0,
           originalValue: '',
           type: 'description',
         },

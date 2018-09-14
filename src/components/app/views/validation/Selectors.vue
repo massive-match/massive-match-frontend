@@ -129,7 +129,7 @@ export default {
   },
   beforeMount() {
     const getSellers = {
-      path: 'sellers',
+      path: 'sellers?limit=371',
     };
     getAll(getSellers).then((res) => {
       const dataResult = res.data;

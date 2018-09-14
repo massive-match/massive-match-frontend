@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { getAll, add } from '@/endpoints';
+import { getAll } from '@/endpoints';
 import Selectors from './Selectors';
 import InitialState from './InitialState';
 import ListedProduct from './ListedProduct';
@@ -122,9 +122,9 @@ export default {
     },
     handleExcelCreation() {
       const excelUrl = {
-        path: `web/test?products_sellers_id=${this.searchedSelectors[0].seller}`,
+        path: `web/downloading?products_sellers_id=${this.searchedSelectors[0].seller}`,
       };
-      add(excelUrl).then(() => {
+      getAll(excelUrl).then(() => {
         this.$notify({
           title: 'Completado',
           message: 'La descarga iniciará pronto',
