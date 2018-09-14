@@ -109,13 +109,12 @@ export default {
   },
   methods: {
     getSelectorData() {
-      // No funciona la forma de Adrian :c
       // if (this.searchedItems.seller !== '') {
       //   const getFromSellers = {
-      //     path: `products?sellers_id=${this.searchedItems.seller}`,
+      //     // path: `products/sellers_id=3`,
       //   };
       //   getAll(getFromSellers).then((res) => {
-      //     console.log(res);
+      //     console.log(res.data);
       //   }).catch(() => {
       //     this.$notify({
       //       title: 'Error',
@@ -124,7 +123,8 @@ export default {
       //     });
       //   })
       // }
-      // Integrar Esto
+      // // Integrar Esto
+      this.$emit('searchedSelectors', this.searchedItems);
     },
   },
   beforeMount() {
@@ -140,6 +140,7 @@ export default {
         };
         this.selectors.seller.options.push(sellerSelector);
       });
+      this.$emit('allSellers', this.selectors.seller);
     }).catch(() => {
       this.$notify({
         title: 'Error',

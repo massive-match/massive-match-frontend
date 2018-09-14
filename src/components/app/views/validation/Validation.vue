@@ -6,7 +6,10 @@
         <p class="subtitle">Verifica que la información obligatoria esté completa</p>
       </el-col>
     </el-row>
-    <selectors class="fixPadding" />
+    <selectors
+      class="fixPadding"
+      @searchedSelectors="loadSearchedProducts"
+      @allSellers="loadAllSellers"/>
     <el-row class="selectedResultsAndCheckBox">
       <el-col :span="12">
         <div class="selectedResultsNumber fixPadding">
@@ -22,11 +25,18 @@
       </el-col>
     </el-row>
     <el-row class="productsContainer">
-      <el-col :span="24">
+      <el-col :span="24"
+        class="adjustHeight"
+        v-loading="loadingState">
+        <initialState
+          v-if="initialState"/>
         <listedProduct
-        v-for="(product, index) in totalProducts"
-        :key="index"
-        :productInfo="totalProducts[index]"/>
+          @updateLoading="updateLoading"
+          v-if="!initialState"
+          v-for="(product, index) in totalProducts"
+          :key="index"
+          :productInfo="totalProducts[index]"
+          :sellersList="allSellersList"/>
       </el-col>
     </el-row>
     <el-row class="pagination">
@@ -41,24 +51,38 @@
           layout="sizes, prev, pager, next, jumper"
           :total="totalProductsNumber">
         </el-pagination>
+        <button
+          @click="handleExcelCreation"
+          class="btn primary excelRequest">Descargar</button>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import { getAll } from '@/endpoints';
+import { getAll, add } from '@/endpoints';
 import Selectors from './Selectors';
+import InitialState from './InitialState';
 import ListedProduct from './ListedProduct';
+
 
 export default {
   data() {
     return {
+      loadingState: false,
+      initialState: true,
       totalProducts: [],
       currentPage: 1,
       currentLimit: 10,
       totalProductsNumber: 0,
+      searchedSelectors: [],
+      allSellersList: [],
     };
+  },
+  components: {
+    selectors: Selectors,
+    listedProduct: ListedProduct,
+    initialState: InitialState,
   },
   methods: {
     handleSizeChange(val) {
@@ -69,8 +93,11 @@ export default {
       this.handleLoadProducts();
     },
     handleLoadProducts() {
+      this.loadingState = true;
+      this.initialState = false;
+      const urlPath = `products?offset=${(this.currentPage * this.currentLimit) - this.currentLimit}&limit=${this.currentLimit}&products_sellers_id=${this.searchedSelectors[0].seller}`;
       const getProducts = {
-        path: `products?offset=${(this.currentPage * this.currentLimit) - this.currentLimit}&limit=${this.currentLimit}`,
+        path: urlPath,
       };
       getAll(getProducts).then((res) => {
         this.totalProducts = res.data;
@@ -83,13 +110,38 @@ export default {
         });
       });
     },
-  },
-  components: {
-    selectors: Selectors,
-    listedProduct: ListedProduct,
+    loadSearchedProducts(el) {
+      this.searchedSelectors.push(el);
+      this.handleLoadProducts();
+    },
+    loadAllSellers(el) {
+      this.allSellersList.push(el);
+    },
+    updateLoading(el) {
+      this.loadingState = el;
+    },
+    handleExcelCreation() {
+      const excelUrl = {
+        path: `web/test?products_sellers_id=${this.searchedSelectors[0].seller}`,
+      };
+      add(excelUrl).then(() => {
+        this.$notify({
+          title: 'Completado',
+          message: 'La descarga iniciará pronto',
+          type: 'error',
+        });
+      }).catch(() => {
+        this.$notify({
+          title: 'Error',
+          message: 'Error en la descarga',
+          type: 'error',
+        });
+      });
+    },
   },
   beforeMount() {
-    this.handleLoadProducts();
+  },
+  watch: {
   },
 };
 </script>
@@ -130,10 +182,17 @@ export default {
   background: white;
   position: absolute;
   bottom: 0;
-  z-index: 10;
+  z-index: 9999;
   box-shadow: 2px 0 4px 0 rgba(0,0,0,0.24);
 }
 .paginationElement {
   margin: 14px 0;
+  display: inline-block;
+}
+.adjustHeight {
+  min-height: calc(100vh - 400px);
+}
+.excelRequest {
+  height: 3em;
 }
 </style>

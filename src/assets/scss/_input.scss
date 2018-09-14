@@ -72,6 +72,19 @@
         }
       }
     }
+    .el-select {
+      &.sellerNameSelector {
+        margin-right: 0.5em;
+        .is-disabled {
+          .el-input__inner {
+            cursor: auto;
+          }
+          .el-input__suffix {
+            display: none;
+          }
+        }
+      }
+    }
   }
 }
 .imageForm {
