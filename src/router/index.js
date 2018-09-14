@@ -1,6 +1,7 @@
 import Layout from '@/components/app/layout/Layout';
 import Validation from '@/components/app/views/validation/Validation';
 import Comparison from '@/components/app/views/comparison/Comparison';
+import Product from '@/components/app/views/comparison/Product';
 
 export default [
   {
@@ -16,6 +17,11 @@ export default [
         path: 'comparison',
         name: 'comparison',
         component: Comparison,
+      },
+      {
+        path: 'product/:id',
+        name: 'product',
+        component: Product,
       },
     ],
   },

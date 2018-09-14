@@ -6,21 +6,42 @@
         <p class="subtitle">Revisa nuestros productos versus la competencia</p>
       </el-col>
     </el-row>
+    <el-row>
+      <div>
+        <h2>Mercado Libre</h2>
+        <top/>
+      </div>
+    </el-row>
   </div>
 </template>
 
 <script>
+import { getAll } from '@/endpoints';
+import Top from './Top';
 
 export default {
+  components: {
+    top: Top,
+  },
   data() {
     return {
     };
   },
   methods: {
-  },
-  components: {
+    getProducts() {
+      getAll({ path: 'products' }).then((response) => {
+        this.products = response.data;
+      }).catch(() => {
+        this.$notify({
+          type: 'error',
+          title: 'Error',
+          message: 'Problemas al obtener productos',
+        });
+      });
+    },
   },
   beforeMount() {
+    this.getProducts();
   },
 };
 </script>
